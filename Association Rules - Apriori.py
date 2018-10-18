@@ -6,11 +6,13 @@ from itertools import combinations
 items_set = ['beer','burger','milk','onion','potato']
 max_trn = 20
 
+# Randomly Generates a 0-1 Matrix, where 1 shows presence of item in transaction
 data=np.random.randint(2, size=(random.randint(1,max_trn),len(items_set)))
 df = pd.DataFrame(data)
 df.columns = items_set
 print(df)      
 
+#Generate Candidate Set
 def candidate_gen(items,level):
 
     candidate_set = []
@@ -73,6 +75,7 @@ def candidate_gen(items,level):
 
     return candidate_set 
 
+# Generate Subsets of a given set
 def subsets(s,level):
     if s == []:
         return [s]
@@ -92,6 +95,7 @@ print("Level 1 Candidate Set : \n",candidate_set)
 
 min_sup = float(input("Enter Minimum support : "))
 
+#Finds Frequent set from Candidate Set
 def freq_set(candidate_set, min_sup):
     dropdf = []
     for i in range(len(candidate_set)):
